@@ -1,0 +1,207 @@
+﻿@model AhorroDigital.API.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<link rel="stylesheet" href="~/css/FormProgress.css" />
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Editar Usuario </h3>
+        <hr />
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageFullPath" />
+            <input type="hidden" asp-for="ImageId" />
+            <input type="hidden" asp-for="Document" />
+            <input type="hidden" asp-for="DocumentTypes" />
+              <input type="hidden" asp-for="DocumentTypeId" />
+            <input type="hidden" asp-for="Email" />
+
+
+            <div class="col-md-12">
+                <flash dismissable="true" />
+            </div>
+
+            <div class="viewphoto">
+                <img id="imagenPrevisualizacion" src="@Model.ImageFullPath" />
+                <button type="button" id="custom-button"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+                <input asp-for="ImageFile" class="form-control" type="file" id="real-file" hidden="hidden" accept="image/*" display="none" />
+            </div>
+
+            <label asp-for="Email" class="control-label content__label-tcb"></label>
+            <div class="input-field-em">
+                <i class="fa-solid fa-at"></i>
+                <input asp-for="Email" class="" placeholder="Email"  readonly="readonly"/>
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="DocumentTypes" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-id-card"></i>
+                        <select asp-for="DocumentTypeId" asp-items="Model.DocumentTypes" class="" readonly="readonly" disabled></select>
+                    </div>
+                    <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
+
+                    <label asp-for="Document" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input asp-for="Document" class="" placeholder="Documento" readonly="readonly" />
+                    </div>
+                    <span asp-validation-for="Document" class="text-danger text__error"></span>
+
+                    <label asp-for="FirstName" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-person"></i>
+                        <input asp-for="FirstName" class="" placeholder="Nombres" />
+                    </div>
+                    <span asp-validation-for="FirstName" class="text-danger text__error"></span>
+
+                     <label asp-for="LastName" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-person"></i>
+                        <input asp-for="LastName" class="" placeholder="Apellidos" />
+                    </div>
+                    <span asp-validation-for="LastName" class="text-danger text__error"></span>
+
+                    <label asp-for="Address" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input asp-for="Address" class="" placeholder="Dirección" />
+                    </div>
+                    <span asp-validation-for="Address" class="text-danger text__error"></span>
+                </div>
+                <div class="col-md-6">
+
+                     <label asp-for="CountryCode" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <input asp-for="CountryCode" class="" placeholder="Codigo País " />
+                    </div>
+                    <span asp-validation-for="CountryCode" class="text-danger text__error"></span>
+
+                    <label asp-for="PhoneNumber" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-mobile"></i>
+                        <input asp-for="PhoneNumber" class="" placeholder="Teléfono" />
+                    </div>
+                    <span asp-validation-for="PhoneNumber" class="text-danger text__error"></span>
+
+                     <label asp-for="AccountTypes" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-money-check-dollar"></i>
+                        <select asp-for="AccountTypeId" asp-items="Model.AccountTypes" class=""></select>
+                    </div>
+                    <span asp-validation-for="AccountTypeId" class="text-danger text__error"></span>
+
+                    <label asp-for="AccountNumber" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <input asp-for="AccountNumber" class="" placeholder="Número de Cuenta Bancaria" />
+                    </div>
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+
+                 <label asp-for="Bank" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <input asp-for="Bank" class="" placeholder="Banco" />
+                    </div>
+                    <span asp-validation-for="Bank" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-success">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/js/FormProgress.js"></script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+
+
+        const realFileBtn = document.getElementById("real-file");
+        const customBtn = document.getElementById("custom-button");
+        const customTxt = document.getElementById("custom-text");
+        var img = document.getElementById("imagenPrevisualizacion");
+
+        customBtn.addEventListener("click", function () {
+            realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function () {
+            if (realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+            } else {
+                customTxt.innerHTML = "No se ha cargado ninguna imagen";
+            }
+        })
+
+        const $seleccionArchivos = document.querySelector("#real-file"),
+            $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+        // Escuchar cuando cambie
+        $seleccionArchivos.addEventListener("change", () => {
+            // Los archivos seleccionados, pueden ser muchos o uno
+            const archivos = $seleccionArchivos.files;
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+                $imagenPrevisualizacion.src = "";
+                return;
+            }
+
+
+            var filePath = realFileBtn.value;
+            var allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+
+
+
+            } else {
+                // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+                const primerArchivo = archivos[0];
+                // Lo convertimos a un objeto de tipo objectURL
+                const objectURL = URL.createObjectURL(primerArchivo);
+                // Y a la fuente de la imagen le ponemos el objectURL
+                $imagenPrevisualizacion.src = objectURL;
+            }
+        });
+    </script>
+    <script>
+
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+        dash.classList.remove('active');
+        user.classList.add('active');
+
+        ta.classList.remove('active');
+        home.classList.remove('active');
+        td.classList.remove('active');
+        tc.classList.remove('active');
+        tp.classList.remove('active');
+        option.classList.add('op_back');
+    </script>
+}

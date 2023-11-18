@@ -1,0 +1,84 @@
+﻿@model AhorroDigital.API.Data.Entities.LoanType
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="~/css/EstilosCard.css" />
+<link rel="stylesheet" href="~/css/FormProgress.css" />
+<link rel="stylesheet" href="https://kit.fontawesome.com/f9b2f7ab54.css" crossorigin="anonymous">
+
+
+<div class="row">
+    <div class="col-md-12 " data-aos="fade-left" data-aos-duration="2000">
+        <h4>Editar Tipo de  Préstamo</h4>
+        <hr />
+        <flash dismissable="true" />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            
+            <label asp-for="Name" class="control-label content__label-tcb"></label>
+
+            <div class="input-field-em">
+                <i class="fa-solid fa-credit-card "></i>
+                <input asp-for="Name" class="" placeholder="Tipo de Préstamo" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="NumberDues" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-hashtag"></i>
+                        <input asp-for="NumberDues" class="" placeholder="Tipo de Ahorro" />
+                    </div>
+                    <span asp-validation-for="NumberDues" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Interes" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-percent"></i>
+                        <input asp-for="Interes" class="" placeholder="Valor minimo de ahorro" />
+                    </div>
+                    <span asp-validation-for="Interes" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="input-field-em">
+                <i class="fa-solid fa-quote-right"></i>
+                <textarea asp-for="Marks" class="marks" placeholder="Comentarios"></textarea>
+
+            </div>
+            <span asp-validation-for="Marks" class="text-danger text__error"></span>
+            <div class="form-group content__btns">
+                <input type="submit" value="Guardar" class="btn btn-primary content__btns-save" />
+                <a asp-action="Index" class="btn btn-success content__btns-back">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let dash = document.getElementById("dashboard");
+        dash.classList.remove('active');
+        tp.classList.add('active');
+        home.classList.remove('active');
+        td.classList.remove('active');
+        tc.classList.remove('active');
+        ta.classList.remove('active');
+    </script>
+}

@@ -1,0 +1,305 @@
+﻿@{
+    Layout = null;
+}
+
+
+<link rel="stylesheet" href="~/css/EstilosIndexHome.css" />
+<link rel="stylesheet" href="~/css/normalize.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/f9b2f7ab54.js" crossorigin="anonymous"></script>
+
+<!--Menu-->
+<header class="hero">
+    <div class="hero__content" id="menu">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <img src="/images/logonatillera.png" alt="logo" class="logo" />
+                @*<h4 class="nav__title">Ahorro Digital</h4>*@
+                
+            </div>
+
+            <ul class="nav__link nav__link--menu">
+                <img src="/images/logonatillera.png" class="logo2" />
+                <li class="nav__items">
+                    <a class="nav__links" asp-area="" asp-controller="Home" asp-action="IndexHome">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#quienessomos" class="nav__links">Quienes Somos</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#caracteristicas" class="nav__links">Características</a>
+                </li>
+                <li class="nav__items">
+                    <a href="#servicios" class="nav__links">Servicios</a>
+                </li>
+                @*<li class="nav__items">
+                    <a class="nav__links separd" asp-area="" asp-controller="Account" asp-action="Register" target="_blank">Registrarse</a>
+                </li>
+                <li class="nav__items">
+                    <a class="nav__links separd" asp-area="" asp-controller="Account" asp-action="Login" target="_blank">Iniciar Sesión</a>
+                </li>*@
+
+
+                <img src="~/images/close.svg" class="nav__close">
+            </ul>
+
+            <div class="nav__menu">
+                <img src="/images/menu.svg" alt="menu" class="nav__img" />
+            </div>
+
+        </nav>
+
+    </div>
+    <div class="wave" style="height: 150px; overflow: hidden;">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none"
+             style="height: 100%; width: 100%;">
+            <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                  style="stroke: none; fill: #fff;"></path>
+        </svg>
+    </div>
+    <section class="hero__container container" data-aos="zoom-in-up" data-aos-duration="2000">
+        <h1 class="hero__title">Ahorro Digital</h1>
+        <p>El camino hacia la riqueza depende fundamentalmente de dos palabras: trabajo y ahorro – Benjamin Franklin</p>
+       @* <a href="#" class="cta">Sobre nosotros</a>*@
+    </section>
+</header>
+
+<!--boton flotante-->
+<a class="btn_login"  asp-area="" asp-controller="Account" asp-action="Login"  target="_blank">
+    <i class="fa-solid fa-arrow-right-to-bracket"></i>     Iniciar Sesión
+ </a>
+<a class="btn_register" asp-area="" asp-controller="Account" asp-action="Register" target="_blank">
+    <i class="fa-solid fa-address-card"></i>     Registrarse
+</a>
+<!--Quienes somos-->
+<div>
+    <div class="contenedor sobre-nosotros" id="quienessomos">
+        <h2 class="titulo">Quienes Somos</h2>
+        <div class="contenedor-sobre-nosotros">
+            <img src="~/images/tranferenciadifital.png" alt="" class="imagen-about-us" data-aos="fade-right"
+                 data-aos-duration="2000">
+            <div class="contenido-textos" data-aos="fade-left"
+                 data-aos-anchor="#example-anchor"
+                 data-aos-offset="900"
+                 data-aos-duration="2000">
+                <p>
+                    Somos tu experto aliado  en ahorro y crédito en donde Nuestro propósito principal es prestar servicios financieros y trabajar 
+                    por el bienestar integral de nuestros asociados atendiendo las necesidades que se presentan en cada etapa de su vida.
+                </p>
+                <h3><span>1</span>Misión</h3>
+                <p>
+                    Brindamos soluciones de ahorro, crédito y bienestar, para que nuestros asociados y sus familias puedan progresar
+                    a través de la realización de sus sueños, mejorando su calidad de vida.
+                </p>
+                <h3><span>2 </span>Visión</h3>
+                <p>Ser el aliado financiero cooperativo preferido para brindar progreso a nuestros asociados y grupos de interés.</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!--Cracteristicas-->
+<div class="main__asociados" id="caracteristicas">
+    <div class="contenedor">
+        <h2 class="titulo">Características</h2>
+        <div class="asociados-cont">
+            <div class="asociados-ind" data-aos="fade-up" data-os-duration="2000">
+                <img src="~/images/somos200.png" alt="">
+                
+                <p class="">Somos más de <span class="asociados__focus" >200 </span> asociados.</p>
+            </div>
+            <div class="asociados-ind asociados-ind-bs" data-aos="fade-up" data-os-duration="2300">
+                <img src="~/images/prociento.png" alt="">
+
+                <p class="">Genera ganancias de hasta el  <span class="asociados__focus-bs">5%</span> de tu ahorro.</p>
+            </div>
+            <div class="asociados-ind " data-aos="fade-up" data-os-duration="2600">
+                <img src="~/images/transferencia.png" alt="">
+                
+                <p class="">realiza todos tus <span class="asociados__focus">aportes </span> de manera digital.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Servicios-->
+<div class="questions contenedor" id="servicios">
+    <h2 class="titulo">Servicios</h2>
+   
+
+    <div class="questions__container">
+        <article class="questions__padding" data-aos="fade-up" data-aos-duration="2000">
+            <div class="questions__answer">
+                <h3 class="questions__title">
+                    NUESTROS AHORROS
+                    <span class="questions__arrow">
+                        <img src="./images/arrow.svg" class="questions__img">
+                    </span>
+                </h3>
+
+                <div class="questions__show">
+                    <p>Con ahorro digital podrás obtener fácil acceso a diferentes formas de ahorrar:</p>
+                    <p class="questions__show-fs"><span class="qs__sh-focus">Ahorro programado: </span>en el cual se podrá definir el monto mínimo a ahorrar en cada aporte a realizar por el asociado.</p>
+                    <p class=""><span class="qs__sh-focus">Ahorro digital: </span>en el cual el asociado podrá realizar aportes de cualquier valor sin un monto mínimo o máximo.</p>
+                    <p class="questions__show-fs">
+                        <i class="fa-solid fa-star"></i>
+                        En cada uno de nuestros ahorros el asociado podrá realizar cuantos aportes quiera.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        El retiro de los ahorros únicamente se realizaran pasado al menos 11 meses desde la suscripción del ahorro.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Por medio de cada ahorro el asociado podrá obtener hasta un 5% mas de lo ahorrado durante todo el periodo.</p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Hacer parte de Ahorro digital es muy fácil <span class="qs__sh-focus">suscríbete aquí ---></span>
+                    </p>
+                    
+
+
+                </div>
+               
+
+            </div>
+        </article>
+
+        <article class="questions__padding" data-aos="fade-up" data-aos-duration="2000">
+            <div class="questions__answer">
+                <h3 class="questions__title">
+                    NUESTROS PRESTAMOS
+                    <span class="questions__arrow">
+                        <img src="./images/arrow.svg" class="questions__img">
+                    </span>
+                </h3>
+
+                <div class="questions__show">
+                    <p>Con ahorro digital obtener fácil acceso a diferentes prestamos:</p>
+                    <p class="questions__show-fs"><span class="qs__sh-focus">Préstamo A1: </span>nuestros asociados pueden solicitar este préstamo y pagarlo hasta en 2 cuotas mensuales con interés del 3%.</p>
+                    <p class=""><span class="qs__sh-focus">Préstamo A2: </span>nuestros asociados  pueden solicitar este préstamo y pagarlo desde 3 a 7 cuotas mensuales con un interés del 5%.</p>
+                    <p class="questions__show-fs">
+                        <i class="fa-solid fa-star"></i>
+                        Los prestamos podrán ser cancelados en su totalidad  dentro del tiempo estipulado.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Si el asociado no genera el pago en las fechas estipuladas se generara un interés adicional del 1.5%
+                    </p>
+                    
+
+
+
+                </div>
+
+            </div>
+        </article>
+
+        <article class="questions__padding" data-aos="fade-up" data-aos-duration="2000">
+            <div class="questions__answer">
+                <h3 class="questions__title">
+                    JUEGO DE LA POYA
+                    <span class="questions__arrow">
+                        <img src="./images/arrow.svg" class="questions__img">
+                    </span>
+                </h3>
+
+                <div class="questions__show">
+                    <p>Se realizará este juego con el fin de recoger más interés para nuestros asociados.</p>
+                    <p class="questions__show-fs">
+                        <i class="fa-solid fa-star"></i>
+                        El premio será $200.000 pesos.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Cada boleta tendrá el valor de $5.000 pesos.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Las boletas estarán disponibles desde inicio de cada mes.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Las boletas se deben cancelar en el momento de escoger el número.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        El sorteo se realizará el ultimo viernes de cada mes por la lotería de Medellín.
+                    </p>
+                    <p class="">
+                        <i class="fa-solid fa-star"></i>
+                        Si ningún asociado se gana el premio este será utilizado para las ganancias del ahorro.
+                    </p>
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </article>
+    </div>
+
+    
+</div>
+
+<!--Footer-->
+<footer>
+
+    <div class="container__footer" >
+        <div class="box__footer">
+            <div class="logof" data-aos="fade-up" data-aos-duration="2000">
+                <img src="~/images/logonatillera.png" alt="">
+            </div>
+            
+        </div>
+        <div class="box__footer box-menu" data-aos="fade-up" data-aos-duration="2000">
+            <h2>Menu</h2>
+            <a href="#quienssomos">Quienes Somos</a>
+            <a href="#caracteristicas">Características</a>
+            <a href="#servicios">Servicios</a>
+            
+        </div>
+
+        <div class="box__footer" data-aos="fade-up" data-aos-duration="2000">
+            <h2>Redes Sociales</h2>
+            <a href="#"> <i class="fab fa-facebook-square"></i> Facebook</a>
+            <a href="#"><i class="fa-brands fa-square-whatsapp"></i> WhatsApp</a>
+            <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+            <a href="#"><i class="fab fa-instagram-square"></i> Instagram</a>
+        </div>
+
+    </div>
+
+    <div class="box__copyright">
+        <hr>
+        <p>Todos los derechos reservados © 2023 <b>Alejandro Galeano</b></p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src=".//js/MenuResponsive.js"></script>
+<script src=".//js/services.js"></script>
+<script src=".//js/script.js"></script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/lib/font-awesome/js/all.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+</script>

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Error404";
+    Layout = null;
+
+}
+
+<link rel="stylesheet" href="~/css/EstilosError.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+
+<div class="container_login">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <div asp-action="Login" class="sign-in-form form">
+
+                <img src="~/images/404Error.png" class="image404" alt="" />
+                <h2 class="title">Oops!</h2>
+                <p class="sub_title">Error 404 - Pagina no encontrada</p>
+                   
+            </div>
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>Ahorro Digital</h3>
+                <p>
+                    El camino hacia la riqueza depende fundamentalmente de dos palabras: trabajo y ahorro – Benjamin Franklin
+                </p>
+                <a asp-controller="Home" asp-action="IndexHome" class="btn transparent" id="sign-up-btn">
+                    Inicio
+                </a>
+            </div>
+            <img src="~/images/404Error.png" class="image" alt="" />
+        </div>
+
+
+    </div>
+</div>
+

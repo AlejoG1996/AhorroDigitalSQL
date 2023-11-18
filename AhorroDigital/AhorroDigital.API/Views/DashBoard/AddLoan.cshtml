@@ -1,0 +1,426 @@
+﻿@model AhorroDigital.API.Models.LoanViewModel
+@{
+    ViewData["Title"] = "AddLoan";
+}
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<link rel="stylesheet" href="~/css/FormProgress.css" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link rel="stylesheet" href="~/css/normalize.css" />
+<link rel="stylesheet" href="~/css/EstilosAhorros.css" />
+
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.6.0/css/select.dataTables.min.css">
+
+<div class="row" data-aos="fade-up" data-aos-duration="2000">
+    <div class="col-md-12">
+        <h3>Nuevo Préstamo</h3>
+        <hr />
+        
+        <form asp-action="AddLoan" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            
+            <input type="hidden" asp-for="LoanTypes" />
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="col-md-12">
+                <flash dismissable="true" />
+            </div>
+             @if (User.IsInRole("Admin"))
+                                            {
+            <div class="viewphoto">
+                <img id="imagenPrevisualizacion" src="~/images/noimages.png" />
+                <button type="button" id="custom-button"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+                <input asp-for="ImageFile" class="form-control" type="file" id="real-file" hidden="hidden" accept="image/*" display="none" />
+            </div>
+            <span asp-validation-for="ImageFile" class="text-danger text__error"></span>
+                                            }
+            <label asp-for="LoanTypeId" class="control-label content__label-tcb"></label>
+            <div class="input-field-em">
+                <i class="fa-solid fa-piggy-bank"></i>
+                <select asp-for="LoanTypeId" asp-items="Model.LoanTypes" class="" id="LoanType"></select>
+            </div>
+            <span asp-validation-for="LoanTypeId" class="text-danger"></span>
+
+            <div class="content_infoloan">
+                <p class="text_loan" id="text_loan">No ha seleccionado un tipo de préstamo</p>
+                <p class="text_description" id="text_description">No hay descripcion para el préstamo</p>
+           </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                   
+
+                    <label asp-for="Interest" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-percent"></i>
+                        <input type="text" asp-for="Interest" class="" id="Interes"  readonly />
+                    </div>
+                    <span asp-validation-for="Interest" class="text-danger text__error"></span>
+
+                    <label asp-for="DateS" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input value="01/01/2023" type="date" class="" style="margin:auto !important; margin-left:0 !important;" asp-for="DateS" class="" />
+                    </div>
+                    <span asp-validation-for="DateS" class="text-danger text__error"></span>
+
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Dues" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-hashtag"></i>
+                        <input asp-for="Dues" class="" id="Dues" />
+                    </div>
+                    <span asp-validation-for="Dues" class="text-danger text__error"></span>
+
+                    <label asp-for="Value" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input asp-for="Value" class="" id="Value" />
+                    </div>
+                    <span asp-validation-for="Value" class="text-danger text__error"></span>
+
+                    
+                </div>
+
+
+            </div>
+            <label asp-for="State" class="control-label content__label-tcb"></label>
+            <div class="input-field-em">
+                <i class="fa-solid fa-filter-circle-dollar"></i>
+                <select asp-for="State" class="marks" placeholder="Comentarios">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Denegado">Denegado</option>
+                        <option value="Aprobado">Aprobado</option>
+                    }
+                    else{
+                                            <option value="Pendiente">Pendiente</option>
+
+                        
+                        }
+
+                </select>
+
+            </div>
+            <span asp-validation-for="State" class="text-danger text__error"></span>
+
+            @if (User.IsInRole("Admin"))
+
+            {
+                <label asp-for="Marks" class="control-label content__label-tcb"></label>
+                <div class="input-field-em">
+                    <i class="fa-solid fa-quote-right"></i>
+                    <textarea asp-for="Marks" class="marks" placeholder="Comentarios" readonly></textarea>
+
+                </div>
+                <span asp-validation-for="Marks" class="text-danger text__error"></span>
+
+                <label asp-for="MarksAdmin" class="control-label content__label-tcb"></label>
+                <div class="input-field-em">
+                    <i class="fa-solid fa-quote-right"></i>
+                    <textarea asp-for="MarksAdmin" class="marks" placeholder="Comentarios"></textarea>
+
+                </div>
+                <span asp-validation-for="MarksAdmin" class="text-danger text__error"></span>
+            }
+            else
+            {
+                <label asp-for="Marks" class="control-label content__label-tcb"></label>
+                <div class="input-field-em">
+                    <i class="fa-solid fa-quote-right"></i>
+                    <textarea asp-for="Marks" class="marks" placeholder="Comentarios"></textarea>
+
+                </div>
+                <span asp-validation-for="Marks" class="text-danger text__error"></span>
+            }
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="DetailsLoan" asp-route-id="@Model.UserId" class="btn btn-success">Regresar</a>
+                
+            </div>
+
+            <div class="mt-4 mb-4">
+                <div class="">
+                    <div class="card content__t ">
+                        <div class="card-header color_text">
+                            <i class="fa-solid fa-money-bill-transfer"></i>  <strong>Plan de Pagos</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                            </div>
+                            <a id="BtnSimulacion" class="btn btn-outline-primary btn_new btns"> Generar Simulación de Préstamo</a>
+                            <p class="text-danger" id="parrafoId"></p>
+                            <div id="view-all">
+
+                                <table class="table table-striped table-bordered" id="SavingTable" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Fecha de Pago
+                                            </th>
+                                            <th>
+                                                Valor Capital
+                                            </th>
+                                            <th>
+                                                Valor Interest
+                                            </th>
+                                            <th>
+                                                Total Cuota a Pagar
+                                            </th>
+
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="tablita">
+
+                                        <tr>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/js/FormProgress.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/js/FormProgress.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<script src="~/js/services.js"></script>
+<script src="~/js/infoexpand.js"></script>
+<script src="~/js/showmodal.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+<script>
+    AOS.init();
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    
+
+
+
+   
+    
+    <script>
+
+
+        const realFileBtn = document.getElementById("real-file");
+        const customBtn = document.getElementById("custom-button");
+        const customTxt = document.getElementById("custom-text");
+        var img = document.getElementById("imagenPrevisualizacion");
+
+        customBtn.addEventListener("click", function () {
+            realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function () {
+            if (realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+            } else {
+                customTxt.innerHTML = "No se ha cargado ninguna imagen";
+            }
+        })
+
+        const $seleccionArchivos = document.querySelector("#real-file"),
+            $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+        // Escuchar cuando cambie
+        $seleccionArchivos.addEventListener("change", () => {
+            // Los archivos seleccionados, pueden ser muchos o uno
+            const archivos = $seleccionArchivos.files;
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+                $imagenPrevisualizacion.src = "";
+                return;
+            }
+
+
+            var filePath = realFileBtn.value;
+            var allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+
+
+
+            } else {
+                // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+                const primerArchivo = archivos[0];
+                // Lo convertimos a un objeto de tipo objectURL
+                const objectURL = URL.createObjectURL(primerArchivo);
+                // Y a la fuente de la imagen le ponemos el objectURL
+                $imagenPrevisualizacion.src = objectURL;
+            }
+        });
+
+     
+    </script>
+    <script>
+
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+
+        home.classList.remove('active');
+        dash.classList.add('active');
+        tc.classList.remove('active');
+        td.classList.remove('active');
+        ta.classList.remove('active');
+        tp.classList.remove('active');
+        user.classList.remove('active');
+    </script>
+    <script>
+        document.getElementById("homes").classList.remove('active');
+        document.getElementById("pre").classList.add('active');
+        document.getElementById("ahr").classList.remove('active');
+
+    </script>
+    <script>
+
+        $(document).ready(function () {
+           
+            $("#LoanType").change(function () {
+                debugger;
+                $("#Interes").val(0);
+                $("#Dues").val(0);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDues")',
+                    dataType: 'json',
+                    data: { LoanTypeId: $("#LoanType").val() },
+                    success: function (states) {
+                      
+                        $("#Interes").val(states.slice(0, 1));
+                        $("#Dues").val(states.slice(1, 2));
+                        document.getElementById('text_loan').innerHTML = states.slice(2, 3);
+                        document.getElementById('text_description').innerHTML = states.slice(3, 4);
+
+                    },
+                    error: function (ex) {
+                        if ($("#LoanType").val() == 0) {
+                            $("#Interes").val(0);
+                            $("#Dues").val(0);
+                            document.getElementById('text_loan').innerHTML = "No ha seleccionado un tipo de préstamo";
+                            document.getElementById('text_description').innerHTML = "No hay descripcion para el préstamo";
+                        }
+                        alert('Failed to retrieve Interes.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+
+    </script>
+
+    <script>
+        BtnSimulacion.addEventListener("click", function () {
+            var _dues = document.getElementById("Dues").value;
+            var _value = document.getElementById("Value").value;
+            var _fecha = new Date();
+            var _interest = document.getElementById("Interes").value;
+           
+            function addDaysToDate(date, days){
+    var res = new Date(date);
+    res.setDate(res.getDate() + days);
+    return res;
+};
+
+            const $elemento = document.querySelector("#tablita");
+            $elemento.innerHTML = "";
+                if (_dues <= 0 || _value <= 0 || _interest <= 0) {
+
+                document.getElementById('parrafoId').innerHTML = "Para realizar simulación de préstamo ingresa un valor de cuotas a pagar, valor a prestar y selecciona el tipo de préstamo.";
+
+                }
+
+                else {
+
+                    document.getElementById('parrafoId').innerHTML = ".";
+                    var _newFecha = addDaysToDate(_fecha, 10);
+                    var _cuota = 0;
+                    var _interes = 0;
+                    var _total = 0;
+                    var _deuda = _value;
+                    _funcional = "si";
+                   
+                document.getElementById('parrafoId').innerHTML = "tener presente que las fechas pueden variar dependiendo de el día de aprobación del préstamo, fecha de aprobación tentativa: " + _newFecha.toLocaleDateString();
+
+                    for (var i = 0; i < _dues; i++) {
+
+                        _newFecha = addDaysToDate(_newFecha, 30);
+                        _cuota = _value / _dues;
+                        _interes = _deuda * (_interest / 100);
+                        _total = _cuota + _interes;
+                        _deuda = _deuda - _cuota;
+
+                        var tr = `<tr>
+                                                          <td>`+ _newFecha.toLocaleDateString() + `</td>
+                                                          <td>`+ "$" + new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(Math.round(_cuota)) + `</td>
+                                                          <td>`+ "$" + new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(Math.round(_interes)) + `</td>
+                                                                  <td>`+ "$" + new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(Math.round(_total)) + `</td>
+                                </tr>`;
+                        $("#tablita").append(tr)
+
+                    }
+
+
+                }
+          
+        });
+
+    </script>
+}    

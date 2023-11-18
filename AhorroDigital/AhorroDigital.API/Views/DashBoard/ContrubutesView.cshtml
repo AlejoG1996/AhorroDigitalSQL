@@ -1,0 +1,511 @@
+﻿@model IEnumerable<AhorroDigital.API.Data.Entities.Contribute>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link rel="stylesheet" href="~/css/normalize.css" />
+<link rel="stylesheet" href="~/css/EstilosAhorros.css" />
+
+
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.6.0/css/select.dataTables.min.css">
+
+<style>
+    .card_info-loan {
+        height: 115px !important;
+    }
+
+    dd{
+        color: #99A3A4;
+        font-size:20px !important;
+        font-weight:700;
+    }
+
+  
+</style>
+<div class="col-md-12"  data-aos="fade-left" data-aos-duration="2000">
+    <div clas="mt-4">
+        <div class="mt-4">
+            <div class="col-md-12">
+                <div class="container-fluid">
+
+                    <div class="row cont_dr">
+
+                        <div class="col-xl-3 col-md-6 mb-4 cont_p">
+                            <div class="card_info-loan">
+                                <div class="col-md-12 ">
+                                    <dl class="row detail_info-loan">
+                                        <div class="col-md-8 ">
+                                            <dt class="col-sm-12">
+                                                Consignaciones Pendientes
+                                            </dt>
+                                            <dd class="col-sm-12">
+                                                @ViewBag.ContContributeSlope  Registros
+                                            </dd>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-hashtag icon_card-loan" ></i>
+                                        </div>
+
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4 cont_p">
+                            <div class="card_info-loan" style=" border-left: 5px solid #17A589 !important;">
+                                <div class="col-md-12 ">
+                                    <dl class="row detail_info-loan">
+                                        <div class="col-md-8">
+                                            <dt class="col-sm-12">
+                                                Consignaciones Aprobadas
+                                            </dt>
+                                            <dd class="col-sm-12">
+                                               @ViewBag.ContContributeApproved Registros
+                                            </dd>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-hashtag icon_card-loan"> </i>
+                                        </div>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-xl-3 col-md-6 mb-4 cont_p">
+                            <div class="card_info-loan" style=" border-left: 5px solid #229954 !important;">
+                                <div class="col-md-12 ">
+                                    <dl class="row detail_info-loan">
+                                        <div class="col-md-8">
+                                            <dt class="col-sm-12">
+                                                Dinero Total  Recaudado 
+                                            </dt>
+                                            <dd class="col-sm-12">
+                                                @{
+                                                    int value = ViewBag.ContContributeRecaudoApproved;
+
+                                                }
+                                                @value.ToString("C")
+
+                                            </dd>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-dollar-sign  icon_card-loan"></i>
+                                        </div>
+
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4 cont_p">
+                            <div class="card_info-loan" style=" border-left: 5px solid #196F3D !important;">
+                                <div class="col-md-12 ">
+                                    <dl class="row detail_info-loan">
+                                        <div class="col-md-8">
+                                            <dt class="col-sm-12">
+                                                Dinero Pendiente Recaudo
+                                            </dt>
+                                            <dd class="col-sm-12">
+                                                @{
+                                                    int values = ViewBag.ContContributeRecaudoSlope;
+
+                                                }
+                                                @values.ToString("C")
+                                            </dd>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-dollar-sign  icon_card-loan"></i>
+                                        </div>
+
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 mb-4" data-aos="fade-left" data-aos-duration="2000">
+
+    <a asp-action="Index" class="btn btn-success">Regresar</a>
+</div>
+
+
+
+
+<div class="container__infoprocess" data-aos="fade-left" data-aos-duration="2000">
+    <flash dismissable="true" />
+</div>
+
+<div class="container__tableUsers saving" data-aos="fade-left" data-aos-duration="2000">
+    <div class="card content__t ">
+        <div class="card-header color_text">
+            <i class="fa-solid fa-money-bill-1"></i>  <strong>Ahorros</strong>
+        </div>
+        <div class="card-body">
+            <div class="mb-2">
+
+
+
+            </div>
+            <div id="view-all">
+
+                <table class="table table-striped table-bordered" id="SavingTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().Saving.User.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Saving.User.Document)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Date)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Marks)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().MarksAdmin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().State)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Value)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ValueAvail)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ValueSlop)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ValueRetreat)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().UserAdmin.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().ImageFullPath)
+                            </th>
+
+                            <th>
+
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Saving.User.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Saving.User.Document)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Date)
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.Marks != null)
+                                        {
+                                            string[] noteWords = item.Marks.Split(' ');
+                                            if (noteWords.Count() > 7)
+                                            {
+                                                <div class=" card__info_c">
+                                                    <div class="   content__info-card">
+                                                        <div class="card-body bod_content">
+
+                                                            <article class="mt-2 art_info">
+                                                                <div class="">
+                                                                    <p class="questions__title_b">
+
+                                                                        <span class="">
+                                                                            <a class="questions__img" style="color:#16A085 !important"> Leer Observación --> </a>
+                                                                        </span>
+                                                                    </p>
+
+                                                                    <div class="questions__show">
+                                                                        @Html.DisplayFor(modelItem => item.Marks)
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Marks)
+                                                ;
+                                            }
+                                        }
+                                    }
+                                </td>
+
+                                <td>
+                                    @{
+                                        if (item.MarksAdmin != null)
+                                        {
+                                            string[] noteWords = item.MarksAdmin.Split(' ');
+                                            if (noteWords.Count() > 7)
+                                            {
+                                                <div class=" card__info_c">
+                                                    <div class="   content__info-card">
+                                                        <div class="card-body bod_content">
+
+                                                            <article class="mt-2 art_info">
+                                                                <div class="">
+                                                                    <p class="questions__title_b">
+
+                                                                        <span class="">
+                                                                            <a class="questions__img" style="color:#16A085 !important"> Leer Observación del administrador--> </a>
+                                                                        </span>
+                                                                    </p>
+
+                                                                    <div class="questions__show">
+                                                                        @Html.DisplayFor(modelItem => item.MarksAdmin)
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.MarksAdmin)
+                                                ;
+                                            }
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.State)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Value)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueAvail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueSlop)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueRetreat)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.UserAdmin.FullName)
+                                </td>
+                                <td>
+                                    <img src="@item.ImageFullPath" style="width:60px; height:60px; border-radius:30px" />
+                                </td>
+                                <td>
+                                    @if (item.ValueRetreat > 0)
+                                    {
+                                        @if (item.State.Equals("Pendiente"))
+                                        {
+                                            <a asp-action="EditContributeDash" asp-route-id="@item.Id" class="btn btn-dark not-active"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                                        }
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a asp-action="EditContributeDash" asp-route-id="@item.Id" class="btn btn-dark not-active"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <button data-id="@item.Id" class="btn btn-danger deleteItem not-active" data-bs-toggle="modal" data-bs-target="#deleteDialog"><i class="fa-solid fa-trash"></i></button>
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        @if (item.State.Equals("Pendiente"))
+                                        {
+                                            <a asp-action="EditContributeDash" asp-route-id="@item.Id" class="btn btn-dark "><i class="fa-solid fa-pen-to-square"></i></a>
+                                        }
+                                        else
+
+                                        {
+                                            @if (User.IsInRole("Admin"))
+                                            {
+                                                <a asp-action="EditContributeDash" asp-route-id="@item.Id" class="btn btn-dark "><i class="fa-solid fa-pen-to-square"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a asp-action="EditContributeDash" asp-route-id="@item.Id" class="btn btn-dark not-active"><i class="fa-solid fa-pen-to-square"></i></a>
+
+
+
+                                            }
+                                        }
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <button data-id="@item.Id" class="btn btn-danger deleteItem " data-bs-toggle="modal" data-bs-target="#deleteDialog"><i class="fa-solid fa-trash"></i></button>
+                                        }
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="_DeleteDialog" />
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/js/FormProgress.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/js/FormProgress.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<script src="~/js/infoexpand.js"></script>
+<script src="~/js/showmodal.js"></script>
+
+<script src="~/js/services.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+<script>
+    AOS.init();
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+
+        home.classList.remove('active');
+        dash.classList.add('active');
+        tc.classList.remove('active');
+        td.classList.remove('active');
+        ta.classList.remove('active');
+        tp.classList.remove('active');
+        user.classList.remove('active');
+    </script>
+
+
+
+    <script>
+
+        window.addEventListener('load', function () {
+
+
+
+            debugger;
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetImagenes")',
+                dataType: 'json',
+                data: { Email: $("#id_img").val() },
+                success: function (states) {
+
+                    document.getElementById('imgprofile').src = states.slice(0, 1);
+
+                },
+                error: function (ex) {
+
+                    document.getElementById('imgprofile').src = "http://localhost:5047/images/users/noimages.png";
+                    alert('Failed to retrieve Interes.' + ex);
+                }
+            });
+            return false;
+
+
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#SavingTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "aLengthMenu": [
+                    [25, 50, 100, 200, -1],
+                    [25, 50, 100, 200, "Todos"]
+                ],
+                //select: {
+                //    style: 'single'
+                //}
+
+            });
+
+
+        });
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/DashBoard/DeleteContributeDash/', false);
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.6.0/js/dataTables.select.min.js"></script>
+
+            }
+

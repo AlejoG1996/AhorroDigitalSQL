@@ -1,0 +1,214 @@
+﻿@model AhorroDigital.API.Models.ContributeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<link rel="stylesheet" href="~/css/FormProgress.css" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
+
+<div class="row" data-aos="fade-up" data-aos-duration="2000">
+    <div class="col-md-12">
+        <h3>Nueva Consignación</h3>
+        <hr />
+        <form asp-action="AddContribute" enctype="multipart/form-data">
+             <input type="hidden" asp-for="Id"/>
+            <input type="hidden" asp-for="SavingId" />
+            
+            <div class="col-md-12">
+                <flash dismissable="true" />
+            </div>
+            <div class="viewphoto">
+                <img id="imagenPrevisualizacion" src="~/images/noimages.png" />
+                <button type="button" id="custom-button"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+                <input asp-for="ImageFile" class="form-control" type="file" id="real-file" hidden="hidden" accept="image/*" display="none" />
+            </div>
+            <span asp-validation-for="ImageFile" class="text-danger text__error"></span>
+
+          
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <label asp-for="Date" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input asp-for="Date" type="date" value="2023/01/01" class="" style="margin:auto !important; margin-left:0 !important;" />
+                    </div>
+                    <span asp-validation-for="Date" class="text-danger text__error" ></span>
+
+                   
+
+                   
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Value" class="control-label content__label-tcb"></label>
+
+                    <div class="input-field">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input asp-for="Value" class=""  />
+                    </div>
+                    <span asp-validation-for="Value" class="text-danger text__error"></span>
+                </div>
+            </div>
+
+            <label asp-for="State" class="control-label content__label-tcb"></label>
+            <div class="input-field-em">
+                <i class="fa-solid fa-filter-circle-dollar"></i>
+                <select asp-for="State" class="marks" placeholder="Comentarios">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Denegado">Denegado</option>
+                        <option value="Aprobado">Aprobado</option>
+                    }
+                    else
+                              {              <option value="Pendiente">Pendiente</option>
+
+                        
+                        }
+
+                </select>
+
+            </div>
+            <span asp-validation-for="State" class="text-danger text__error"></span>
+
+
+            
+
+            @if (User.IsInRole("Admin"))
+
+            {
+                <label asp-for="Marks" class="control-label content__label-tcb"></label>
+            <div class="input-field-em">
+                <i class="fa-solid fa-quote-right"></i>
+                <textarea asp-for="Marks" class="marks" placeholder="Comentarios" readonly></textarea>
+
+            </div>
+            <span asp-validation-for="Marks" class="text-danger text__error"></span>
+
+                <label asp-for="MarksAdmin" class="control-label content__label-tcb"></label>
+                <div class="input-field-em">
+                    <i class="fa-solid fa-quote-right"></i>
+                    <textarea asp-for="MarksAdmin" class="marks" placeholder="Comentarios"></textarea>
+
+                </div>
+                <span asp-validation-for="MarksAdmin" class="text-danger text__error"></span>
+            }
+            else
+            {
+                <label asp-for="Marks" class="control-label content__label-tcb"></label>
+                <div class="input-field-em">
+                    <i class="fa-solid fa-quote-right"></i>
+                    <textarea asp-for="Marks" class="marks" placeholder="Comentarios"></textarea>
+
+                </div>
+                <span asp-validation-for="Marks" class="text-danger text__error"></span>
+            }
+          
+
+            
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="DetailsSaving" asp-route-id="@Model.SavingId" class="btn btn-success">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script src="~/js/FormProgress.js"></script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+
+
+        const realFileBtn = document.getElementById("real-file");
+        const customBtn = document.getElementById("custom-button");
+        const customTxt = document.getElementById("custom-text");
+        var img = document.getElementById("imagenPrevisualizacion");
+
+        customBtn.addEventListener("click", function () {
+            realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function () {
+            if (realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+            } else {
+                customTxt.innerHTML = "No se ha cargado ninguna imagen";
+            }
+        })
+
+        const $seleccionArchivos = document.querySelector("#real-file"),
+            $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+        // Escuchar cuando cambie
+        $seleccionArchivos.addEventListener("change", () => {
+            // Los archivos seleccionados, pueden ser muchos o uno
+            const archivos = $seleccionArchivos.files;
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+                $imagenPrevisualizacion.src = "";
+                return;
+            }
+
+
+            var filePath = realFileBtn.value;
+            var allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+
+
+
+            } else {
+                // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+                const primerArchivo = archivos[0];
+                // Lo convertimos a un objeto de tipo objectURL
+                const objectURL = URL.createObjectURL(primerArchivo);
+                // Y a la fuente de la imagen le ponemos el objectURL
+                $imagenPrevisualizacion.src = objectURL;
+            }
+        });
+    </script>
+
+    <script>
+
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+
+        home.classList.remove('active');
+        dash.classList.add('active');
+        tc.classList.remove('active');
+        td.classList.remove('active');
+        ta.classList.remove('active');
+        tp.classList.remove('active');
+        user.classList.remove('active');
+    </script>
+    <script>
+        document.getElementById("homes").classList.remove('active');
+        document.getElementById("ahr").classList.add('active');
+        document.getElementById("pre").classList.remove('active');;
+
+    </script>
+}

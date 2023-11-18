@@ -1,0 +1,517 @@
+﻿@model AhorroDigital.API.Data.Entities.User
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link rel="stylesheet" href="~/css/normalize.css" />
+<link rel="stylesheet" href="~/css/EstilosAhorros.css" />
+
+
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.6.0/css/select.dataTables.min.css">
+
+
+<div class="mb-4" data-aos=" fade-left" data-aos-duration="2000">
+    <div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12 content_first">
+                    <article class="questions__padding" style="background-color:#F4F6F6 !important; border: none !important;
+                                                                             border-left: 5px solid #27AE60 !important;">
+                        <div class="questions__answer">
+                            <h3 class="questions__title " style="color:#27AE60 !important">
+                                Usuario
+                                <span class="questions__arrow" style="background-color:#27AE60 !important">
+                                    <img src="~/images/arrow.svg" class="questions__img">
+                                </span>
+                            </h3>
+
+                            <div class="questions__show">
+                                <div class="row">
+                                    <div class="col-md-12 content_info-u">
+                                        <img src="@Model.ImageFullPath" style="width: 100px; height: 100px; border-radius:25px;" />
+                                        <dl class="row">
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.FullName)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.FullName)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.DocumentType.Name)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.DocumentType.Name)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.Document)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.Document)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.Email)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.Email)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.PhoneNumber)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.PhoneNumber)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.AccountType.Name)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.AccountType.Name)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.AccountNumber)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.AccountNumber)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.Bank)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.Bank)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.TotalA)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.TotalA)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.AvailLoan)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.AvailLoan)
+                                            </dd>
+                                            <dt class="col-sm-5">
+                                                @Html.DisplayNameFor(model=>model.ValueLoan)
+                                            </dt>
+                                            <dd class="col-sm-7">
+                                                @Html.DisplayFor(model=> model.ValueLoan)
+                                            </dd>
+                                        </dl>
+                                    </div>
+
+                                </div>
+
+                               
+
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 mb-4" data-aos="fade-left" data-aos-duration="2000">
+
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Index" class="btn btn-success">Regresar</a>
+
+    }
+    
+</div>
+
+<div class="container__infoprocess" data-aos="fade-left" data-aos-duration="2000">
+    <flash dismissable="true" />
+</div>
+
+
+<div class=" saving" data-aos="fade-left" data-aos-duration="2000">
+    <div class="card content__t ">
+        <div class="card-header color_text">
+            <i class="fa-solid fa-credit-card"></i>  <strong>Préstamos</strong>
+        </div>
+        
+        <div class="card-body">
+            <div class="mb-2">
+
+                <a asp-action="AddLoan" asp-route-id="@Model.Id" class="btn btn-outline-primary btn_new btns"><i class="fa-solid fa-circle-plus"></i> Adiccionar Préstamo</a>
+
+
+            </div>
+            <div id="view-all">
+
+                <table class="table table-striped table-bordered" id="SavingTable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().LoanType)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().DateS)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().DateA)
+                            </th>
+                             <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().State)
+                            </th>
+                           @* <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().DateNesxtPa)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().Marks)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().MarksAdmin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().Value)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().ValueP)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().ValueD)
+                            </th>
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().ValueDues)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().ValueNextDues)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().Interest)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().Dues)
+                            </th>
+                          @*  <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().PaymetsCount)
+                            </th>*@
+                          @*  <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().PaymetsCountP)
+                            </th>*@
+                            
+                           @* <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().Total)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().TotalP)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().TotalD)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().ValueTotal)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().TotalAvail)
+                            </th>*@
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().DayArrears)
+                            </th>
+                              <th>
+                                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().ValueArrears)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.ImageFullPath)
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Loans)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.LoanType.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.DateS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.DateA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.State)
+                                </td>
+                               @* <td>
+                                    @Html.DisplayFor(modelItem=>item.DateNesxtPa)
+                                </td>*@
+                                <td>
+                                    @{
+                                        if (item.Marks != null)
+                                        {
+                                            string[] noteWords = item.Marks.Split(' ');
+                                            if (noteWords.Count() > 7)
+                                            {
+                                                <div class=" card__info_c">
+                                                    <div class="   content__info-card">
+                                                        <div class="card-body bod_content">
+
+                                                            <article class="mt-2 art_info">
+                                                                <div class="">
+                                                                    <p class="questions__title_b">
+
+                                                                        <span class="">
+                                                                            <a class="questions__img" style="color:#16A085 !important"> Leer Observación --> </a>
+                                                                        </span>
+                                                                    </p>
+
+                                                                    <div class="questions__show">
+                                                                        @Html.DisplayFor(modelItem => item.Marks)
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Marks)
+                                                ;
+                                            }
+                                        }
+                                    }
+                                </td>
+                                
+                                <td>
+                                    @{
+                                        if (item.MarksAdmin != null)
+                                        {
+                                            string[] noteWords = item.MarksAdmin.Split(' ');
+                                            if (noteWords.Count() > 7)
+                                            {
+                                                <div class=" card__info_c">
+                                                    <div class="   content__info-card">
+                                                        <div class="card-body bod_content">
+
+                                                            <article class="mt-2 art_info">
+                                                                <div class="">
+                                                                    <p class="questions__title_b">
+
+                                                                        <span class="">
+                                                                            <a class="questions__img" style="color:#16A085 !important"> Leer Observación Admin--> </a>
+                                                                        </span>
+                                                                    </p>
+
+                                                                    <div class="questions__show">
+                                                                        @Html.DisplayFor(modelItem => item.MarksAdmin)
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.MarksAdmin)
+                                                ;
+                                            }
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Value)
+                                </td>
+                                 <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueD)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem=>item.ValueDues)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueNextDues)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Interest)%
+                                   
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Dues)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem=>item.PaymetsCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.PaymetsCountP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.TotalP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.TotalD)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueTotal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.TotalAvail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.DayArrears)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem=>item.ValueArrears)
+                                </td>*@
+                                <td>
+                                    <img src="@item.ImageFullPath" style="width:60px; height:60px; border-radius:30px" />
+                                </td>
+                                <td>
+
+                                    @{
+                                        if (item.State.Equals("Aprobado"))
+                                        {
+                                             @if (User.IsInRole("Admin"))
+                                            {
+                                                <a asp-action="EditLoanApr" asp-route-id="@item.Id" class="btn btn-dark "><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a asp-action="DetailsPayment" asp-route-id="@item.Id" class="btn btn-info"><i class="fa-solid fa-money-bill-transfer"></i></a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="EditLoanApr" asp-route-id="@item.Id" class="btn btn-dark not-active "><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a asp-action="DetailsPayment" asp-route-id="@item.Id" class="btn btn-info"><i class="fa-solid fa-money-bill-transfer"></i></a>
+                                            }
+
+                                    }else{
+
+                                             <a asp-action="EditLoan" asp-route-id="@item.Id" class="btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a asp-action="DetailsPayment" asp-route-id="@item.Id" class="btn btn-info not-active"><i class="fa-solid fa-money-bill-transfer"></i></a>
+
+                                        }
+                                    }
+                                     @if (User.IsInRole("Admin"))
+                                    {
+                                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-bs-toggle="modal" data-bs-target="#deleteDialog"><i class="fa-solid fa-trash"></i></button>
+
+                                            
+                                        }
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="_DeleteDialog" />
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+   
+
+    <script src="~/js/infoexpand.js"></script>
+    <script src="~/js/showmodal.js"></script>
+   
+    <script src="~/js/services.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#SavingTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "aLengthMenu": [
+                    [25, 50, 100, 200, -1],
+                    [25, 50, 100, 200, "Todos"]
+                ],
+                //select: {
+                //    style: 'single'
+                //}
+
+            });
+
+
+        });
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/DashBoard/DeleteLoan/', false);
+    </script>
+    <script>
+
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+
+        home.classList.remove('active');
+        dash.classList.add('active');
+        tc.classList.remove('active');
+        td.classList.remove('active');
+        ta.classList.remove('active');
+        tp.classList.remove('active');
+        user.classList.remove('active');
+    </script>
+    <script>
+        document.getElementById("homes").classList.remove('active');
+        document.getElementById("pre").classList.add('active');
+        document.getElementById("ahr").classList.remove('active');
+
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.6.0/js/dataTables.select.min.js"></script>
+
+
+
+
+
+
+}

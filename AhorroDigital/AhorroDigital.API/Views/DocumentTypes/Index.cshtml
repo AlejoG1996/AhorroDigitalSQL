@@ -1,0 +1,112 @@
+﻿@model IEnumerable<AhorroDigital.API.Data.Entities.DocumentType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="~/css/EstilosCard.css" />
+<link rel="stylesheet" href="https://kit.fontawesome.com/f9b2f7ab54.css" crossorigin="anonymous">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<div class="row conatiner__card">
+
+    <div class="col-md-12">
+        <p class="col-md-6 " data-aos="fade-left" data-aos-duration="2000">
+            <a asp-action="Create" class="btn btn-primary">Nuevo</a>
+        </p>
+        <div class="col-md-12">
+            <flash dismissable="true" />
+        </div>
+
+        <div class="panel panel-default" data-aos="fade-left" data-aos-duration="2000">
+
+
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-8 mb-5 " >
+                    <div class="card text-white bg-secondary mb-3">
+                        <div class="card-header"><i class="fa-solid fa-address-card mr-3"></i>Tipo de Documento</div>
+                        <div class="card-body">
+                            <div class="container__buttons">
+                                <p class="card-title mr-3 font-weight-bold"><span>Tipo:   </span></p>
+                                <p class="card-text">  @Html.DisplayFor(modelItem => item.Name)</p>
+                            </div>
+                            <div class="container__buttons">
+                                <p class="card-title mr-3 font-weight-bold"><span>Número registros:   </span></p>
+                                <p class="card-text">   @Html.DisplayFor(modelitem=> item.NumberRegister)</p>
+                            </div>
+                            <div class="container__buttons">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning mr-3 btn_edit">Editar</a>
+                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-bs-toggle="modal" data-bs-target="#deleteDialog"><span>Borrar</span></button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+<partial name="_DeleteDialog" />
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/showmodal.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MyTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "aLengthMenu": [
+                    [25, 50, 100, 200, -1],
+                    [25, 50, 100, 200, "Todos"]
+                ]
+            });
+
+        });
+    </script>
+    <script>
+
+        // Delete item
+
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/DocumentTypes/Delete/', false);
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+        dash.classList.remove('active');
+        td.classList.add('active');
+        home.classList.remove('active');
+        tc.classList.remove('active');
+        ta.classList.remove('active');
+        tp.classList.remove('active');
+        user.classList.remove('active');
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/f9b2f7ab54.js" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+}

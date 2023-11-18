@@ -1,0 +1,106 @@
+﻿@model IEnumerable<AhorroDigital.API.Data.Entities.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link rel="stylesheet" href="~/css/normalize.css" />
+<link rel="stylesheet" href="~/css/EstilosTables.css" />
+
+
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.6.0/css/select.dataTables.min.css">
+
+
+
+
+<div class="container__infoprocess">
+    <flash dismissable="true" />
+</div>
+
+<div class="container__tableUsers users" data-aos="fade-left" data-aos-duration="2000">
+    <div class="card content__t ">
+        <div class="card-header color_text">
+            <i class="fa fa-users"></i>  <strong>Usuarios</strong>
+        </div>
+        <div class="card-body">
+            <div id="view-all">
+                @await Html.PartialAsync("_ViewAll", Model)
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="_DeleteDialog" />
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="~/js/showmodal.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#UsersTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "aLengthMenu": [
+                    [25, 50, 100, 200, -1],
+                    [25, 50, 100, 200, "Todos"]
+                ],
+                //select: {
+                //    style: 'single'
+                //}
+                      
+            });
+           
+
+        });
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Users/Delete/', false);
+    </script>
+    <script>
+        
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+        dash.classList.remove('active');
+        user.classList.add('active');
+
+        ta.classList.remove('active');
+        home.classList.remove('active');
+        td.classList.remove('active');
+        tc.classList.remove('active');
+        tp.classList.remove('active');
+        option.classList.add('op_back');
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.6.0/js/dataTables.select.min.js"></script>
+
+    
+    
+
+
+
+}

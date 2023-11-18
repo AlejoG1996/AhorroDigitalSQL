@@ -1,0 +1,216 @@
+
+.panel-default {
+}
+
+.card-header i{
+    margin-right:8px!important;
+}
+.card {
+    max-width: 100% !important;
+    margin: auto !important;
+}
+
+.container__buttons {
+    display: flex !important;
+}
+
+    .container__buttons > a {
+        background: #28B463 !important;
+        color: #fff !important;
+        border: none !important;
+        outline: none !important;
+        width: 120px !important;
+        transition: background 1s linear;
+        box-shadow: none !important;
+    }
+
+        .container__buttons > a:hover {
+            background: #196F3D !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+
+    .container__buttons > button {
+        background: #148F77 !important;
+        color: #fff !important;
+        border: none !important;
+        outline: none !important;
+        width: 120px !important;
+        transition: background 1s linear;
+        box-shadow: none !important;
+    }
+
+        .container__buttons > button:hover {
+            background: #0E6251 !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+.btn-primary {
+    width: 200px !important;
+    background: #196F3D !important;
+    color: #fff !important;
+    border: none !important;
+    outline: none !important;
+    transition: background 1s linear;
+    box-shadow: none !important;
+}
+
+    .btn-primary:hover {
+        background: #28B463 !important;
+    }
+
+.container {
+    width: 90% !important;
+    margin: auto !important;
+}
+
+i {
+    color: #fff;
+}
+
+.container {
+    margin: auto !important;
+    height: 100% !important;
+}
+
+.container__buttons > p > span{
+    margin-right:7px !important;
+}
+/*footer*/
+containe__button-footer {
+    padding-bottom: 5px !important;
+    margin-top: 10px !important;
+    height: 50px !important;
+    margin: auto !important;
+    align-content: center;
+    width: 100% !important;
+}
+
+.containe__button-privacy {
+    padding-top: 8px !important;
+    padding-bottom: 5px !important;
+    background: #E8F8F5 !important;
+    color: #808B96 !important;
+    margin: auto !important;
+    align-content: center;
+    width: 100% !important;
+}
+
+.btn-floating {
+    color: #ABB2B9 !important;
+}
+
+section > a > i {
+    color: #ABB2B9 !important;
+}
+
+    section > a > i:hover {
+        color: #27ae60 !important;
+    }
+
+/*nuevo-editar*/
+.btn_edit{
+    margin-right:14px!important;
+}
+.input-field {
+    max-width: 100% !important;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 5% 95%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+
+    .input-field i {
+        text-align: center;
+        line-height: 55px;
+        color: #acacac;
+        transition: 0.5s;
+        font-size: 1.1rem;
+        margin:auto!important;
+    }
+
+    .input-field input {
+        background: none;
+        outline: none;
+        border: none;
+        line-height: 1.1;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #333;
+        padding-left:9px;
+    }
+
+.input-field-em input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.form-control {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.content__btns-back {
+    width: 200px !important;
+    background: #2C3E50 !important;
+    border: none !important;
+    transition: all 1s ease !important;
+}
+
+.content__btns{
+    margin-top:15px!important;
+}
+
+.content__btns-back:hover {
+    background: #808B96 !important;
+}
+
+.btn-success {
+    box-shadow: none !important;
+    outline: none !important;
+    
+}
+
+
+
+@media screen and (max-width:500px) {
+    .content__btns-back {
+        width: 100% !important;
+        margin-top: 8px !important;
+    }
+
+    .content__btns-save {
+        width: 100% !important;
+    }
+}
+
+.content__forms {
+    animation-name: desplazarseform;
+    animation-fill-mode: inherit;
+    animation-duration: 2s;
+    animation-direction: initial;
+}
+
+
+
+@keyframes desplazarseform {
+    0% {
+        top: 100%;
+    }
+
+    100% {
+        top: 0;
+    }
+}

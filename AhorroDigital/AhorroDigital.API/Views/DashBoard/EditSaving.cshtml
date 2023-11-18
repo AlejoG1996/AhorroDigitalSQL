@@ -1,0 +1,181 @@
+﻿@model AhorroDigital.API.Models.SavingViewModel
+@{
+    ViewData["Title"] = "EditSaving";
+}
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<link rel="stylesheet" href="~/css/FormProgress.css" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
+
+<div class="row" data-aos="fade-up" data-aos-duration="2000">
+    <div class="col-md-12">
+        <h3>Editar Ahorro</h3>
+        <hr />
+        <form asp-action="EditSaving" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="col-md-12">
+                <flash dismissable="true" />
+            </div>
+
+            <label asp-for="SavingTypeId" class="control-label content__label-tcb"></label>
+            <div class="input-field-em">
+                <i class="fa-solid fa-piggy-bank"></i>
+                <select asp-for="SavingTypeId" asp-items="Model.SavingTypes" class="" id="id_saving"></select>
+            </div>
+            <span asp-validation-for="SavingTypeId" class="text-danger"></span>
+
+            <div class="content_infoloan">
+                <p class="text_loan" id="text_loan">No ha seleccionado un tipo de Ahorro</p>
+                <p class="text_description" id="text_description">No hay descripcion para el Ahorro</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="DateIni" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" asp-for="DateIni"  class="" style="margin:auto !important; margin-left:0 !important;" readonly />
+                    </div>
+                    <span asp-validation-for="DateIni" class="text-danger text__error"></span>
+
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="MinValue" class="control-label content__label-tcb"></label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input asp-for="MinValue" class="" id="id_input" />
+                    </div>
+                    <span asp-validation-for="MinValue" class="text-danger text__error"></span>
+
+                </div>
+
+
+            </div>
+            <label asp-for="Marks" class="control-label content__label-tcb"></label>
+
+            <div class="input-field-em">
+                <i class="fa-solid fa-quote-right"></i>
+                <textarea asp-for="Marks" class="marks" placeholder="Comentarios"></textarea>
+
+            </div>
+            <span asp-validation-for="Marks" class="text-danger text__error"></span>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" asp-route-id="@Model.UserId"  class="btn btn-success">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/js/FormProgress.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+
+        let home = document.getElementById("home");
+        let td = document.getElementById("td");
+        let tc = document.getElementById("tc");
+        let ta = document.getElementById("ta");
+        let tp = document.getElementById("tp");
+        let user = document.getElementById("user");
+        let dash = document.getElementById("dashboard");
+
+        home.classList.remove('active');
+        dash.classList.add('active');
+        tc.classList.remove('active');
+        td.classList.remove('active');
+        ta.classList.remove('active');
+        tp.classList.remove('active');
+        user.classList.remove('active');
+    </script>
+    <script>
+        document.getElementById("homes").classList.remove('active');
+        document.getElementById("ahr").classList.add('active');
+        document.getElementById("pre").classList.remove('active');;
+
+    </script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#id_saving").change(function () {
+                debugger;
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetSaving")',
+                    dataType: 'json',
+                    data: { SavingTypeId: $("#id_saving").val() },
+                    success: function (states) {
+
+
+                        document.getElementById('text_loan').innerHTML = states.slice(0, 1);
+                        document.getElementById('text_description').innerHTML = states.slice(1, 2);
+
+                    },
+                    error: function (ex) {
+                        if ($("#id_saving").val() == 0) {
+
+                            document.getElementById('text_loan').innerHTML = "No ha seleccionado un tipo de Ahorro";
+                            document.getElementById('text_description').innerHTML = "No hay descripcion para el Ahorro";
+                        }
+                        alert('Failed to retrieve Interes.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+
+    </script>
+    <script>
+        window.addEventListener('load', function () {
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetSaving")',
+                dataType: 'json',
+                data: { SavingTypeId: $("#id_saving").val() },
+                success: function (states) {
+
+
+                    document.getElementById('text_loan').innerHTML = states.slice(0, 1);
+                    document.getElementById('text_description').innerHTML = states.slice(1, 2);
+
+                },
+                error: function (ex) {
+                    if ($("#id_saving").val() == 0) {
+
+                        document.getElementById('text_loan').innerHTML = "No ha seleccionado un tipo de Ahorro";
+                        document.getElementById('text_description').innerHTML = "No hay descripcion para el Ahorro";
+                    }
+                    alert('Failed to retrieve Interes.' + ex);
+                }
+            });
+            return false;
+           
+
+        });
+    </script>
+}
+

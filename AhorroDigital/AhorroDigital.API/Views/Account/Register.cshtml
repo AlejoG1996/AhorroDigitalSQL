@@ -1,0 +1,352 @@
+﻿@model AhorroDigital.API.Models.AddUserViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+@*<link rel="stylesheet" href="~/css/EstilosLogin.css" />
+*@<link rel="stylesheet" href="~/css/EstilosRegistro.css" />
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/f9b2f7ab54.js" crossorigin="anonymous"></script>
+
+<style>
+
+    body{
+        overflow-x:hidden!important;
+    }
+
+    html{
+        overflow-x: hidden !important;
+    }
+    .form-information-childs {
+        width: 90% !important;}
+
+        form{
+            width:100%!important;
+            max-width:100%!important;
+            margin:auto !important;
+        
+        
+        }
+
+    .container-form{
+        height:700px !important;
+    }
+
+
+    .form-information-childs{
+        padding-top:100px!important;
+
+    }
+
+    @@media screen and (max-width:700px) {
+        
+
+        .form-information-childs {
+            width: 100% !important;
+            padding: 0 30px;
+        }}
+
+    .form-register__body{
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    i{
+         color: #686868 !important;
+    }
+   
+</style>
+
+
+<body >
+    <div class="container-form register" data-aos="fade-right" data-aos-duration="2000">
+        <div class="information">
+            <div class="info-childs">
+                <img src="~/images/logonatillera.png" class="logo" />
+                <h2>Bienvenido!</h2>
+                <p>Para unirte a nuestra comunidad de ahorro digital  por favor inicia sesión con tus datos o regístrate para hacer parte de nuestra comunidad.</p>
+                <a id="sign-in" asp-area="" asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
+            </div>
+          
+        </div>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Crear una Cuenta</h2>
+                <!--aca va formulario-->
+
+                <form asp-action="Register" enctype="multipart/form-data" class="sign-in-form form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="ImageFullPath" />
+                    <!--section bar-->
+                    <div class="form-register__header">
+                        <ul class="progressbar">
+
+                            <li class="progressbar__option active opf">Personal</li>
+                            <li class="progressbar__option">Bancaria</li>
+                            <li class="progressbar__option opn">Usuario</li>
+                        </ul>
+                    </div>
+
+                     <div class="div__flash">
+                        <flash dismissable="true" />
+                    </div>
+
+                    <!--arte formulario-->
+                    <div class="form-register__body">
+                        <div class="step active" id="step-1">
+
+
+                            <div class="step__body">
+
+                               
+                             
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                         <div class="text-input">
+                                            <i class="fa-solid fa-id-card icon_color"></i>
+                                    <select asp-for="DocumentTypeId" asp-items="Model.DocumentTypes" class=""></select>
+
+                                </div>
+                                <span asp-validation-for="DocumentTypeId" class="text-warningbs"></span>
+
+                                        <div class="text-input">
+                                            <i class="fa-regular fa-id-card icon_color"></i>
+                                            <input asp-for="Document" type="text" placeholder="Número Documento">
+
+                                        </div>
+                                        <span asp-validation-for="Document" class="text-warningbs"></span>
+
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-pen-clip icon_color"></i>
+                                            <input asp-for="FirstName" type="text" placeholder="Nombres">
+
+                                        </div>
+                                        <span asp-validation-for="FirstName" class="text-warningbs"></span>
+
+                                        
+
+                                    </div>
+                                    <div class="col-md-6">
+                                       
+
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-pencil icon_color"></i>
+                                            <input asp-for="LastName" type="text" placeholder="Apellidos">
+
+                                        </div>
+                                        <span asp-validation-for="LastName" class="text-warningbs"></span>
+
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-earth-americas icon_color"></i>
+                                            <input asp-for="CountryCode" type="text" placeholder="Código País">
+
+                                        </div>
+                                        <span asp-validation-for="CountryCode" class="text-warningbs"></span>
+
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-mobile icon_color"></i>
+                                            <input asp-for="PhoneNumber" type="text" placeholder="Teléfono">
+
+                                        </div>
+                                        <span asp-validation-for="PhoneNumber" class="text-warningbs"></span>
+                                    </div>
+                                  
+                                </div>
+                                <div class="text-input">
+                                    <i class="fa-solid fa-map-location-dot icon_color"></i>
+                                    <input asp-for="Address" type="text" placeholder="Dirección">
+
+                                </div>
+                                <span asp-validation-for="Address" class="text-warningbs"></span>
+                                <p class="necesary">*Todos los campos son necesarios</p>
+                            </div>
+
+                            <div class="step__footer">
+                                <button type="button" class="step__button step__button--next" data-to_step="2" data-step="1" style=" float: right !important;">Siguiente</button>
+                            </div>
+                        </div>
+
+                        <div class="step" id="step-2">
+
+
+                            <div class="step__body">
+                             
+                                <div class="text-input">
+                                    <i class="fa-solid fa-money-check-dollar icon_color"></i>
+                                    <select asp-for="AccountTypeId" asp-items="Model.AccountTypes" class=""></select>
+
+                                </div>
+                                <span asp-validation-for="AccountTypeId" class="text-warningbs"></span>
+                               
+                                <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-money-bill-transfer icon_color"></i>
+                                            <input asp-for="AccountNumber" type="text" placeholder="Número de cuenta">
+
+                                        </div>
+                                        <span asp-validation-for="AccountNumber" class="text-warningbs"></span>
+                                        </div>
+                                       <div class="col-md-6">
+
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-building-columns icon_color"></i>
+                                            <input asp-for="Bank" type="text" placeholder="Banco">
+
+                                        </div>
+                                        <span asp-validation-for="Bank" class="text-warningbs"></span>
+                                      </div>
+                                </div>
+                                <p class="necesary">*Todos los campos son necesarios</p>
+
+                            </div>
+
+
+                            <div class="step__footer">
+                                <button type="button" class="step__button step__button--back" data-to_step="1" data-step="2">Regresar</button>
+                                <button type="button" class="step__button step__button--next" data-to_step="3" data-step="2">Siguiente</button>
+                            </div>
+                        </div>
+
+
+                        <div class="step" id="step-3">
+
+                            <div class="step__body">
+                                <div class="viewphoto">
+                                    <img id="imagenPrevisualizacion" src="~/images/noimages.png" />
+                                    <button type="button" id="custom-button"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+                                    <input asp-for="ImageFile" class="form-control" type="file" id="real-file" hidden="hidden" accept="image/*" display="none" />
+                                </div>
+                                <div class="text-input">
+                                    <i class="fa-solid fa-at icon_color"></i>
+                                    <input asp-for="UserName" type="email" class="" placeholder="Email"></input>
+
+                                </div>
+                                <span asp-validation-for="UserName" class="text-warningbs"></span>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-lock icon_color"></i>
+                                            <input asp-for="Password" type="password" placeholder="Contraseña">
+
+                                        </div>
+                                        <span asp-validation-for="Password" class="text-warningbs"></span>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="text-input">
+                                            <i class="fa-solid fa-lock icon_color"></i>
+                                            <input asp-for="PasswordConfirm" type="password" placeholder="Confirmar Contraseña">
+
+                                        </div>
+                                        <span asp-validation-for="PasswordConfirm" class="text-warningbs"></span>
+                                    </div>
+                                </div>
+                                <p class="necesary">*Todos los campos son necesarios</p>
+
+                                <div class="step__footer">
+                                    <button type="button" class="step__button step__button--back" data-to_step="2" data-step="3">Regresar</button>
+                                    <button type="submit" class="step__button">Registrarse</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/scripts.js"></script>
+<script src="~/lib/jasny/jasny-bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/lib/font-awesome/js/all.min.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+</script>
+
+<script type="text/javascript">
+
+
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-button");
+    const customTxt = document.getElementById("custom-text");
+    var img = document.getElementById("imagenPrevisualizacion");
+
+    customBtn.addEventListener("click", function () {
+        realFileBtn.click();
+    });
+
+    realFileBtn.addEventListener("change", function () {
+        if (realFileBtn.value) {
+            customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+        } else {
+            customTxt.innerHTML = "No se ha cargado ninguna imagen";
+        }
+    })
+
+    const $seleccionArchivos = document.querySelector("#real-file"),
+        $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+
+    // Escuchar cuando cambie
+    $seleccionArchivos.addEventListener("change", () => {
+        // Los archivos seleccionados, pueden ser muchos o uno
+        const archivos = $seleccionArchivos.files;
+        // Si no hay archivos salimos de la función y quitamos la imagen
+        if (!archivos || !archivos.length) {
+            $imagenPrevisualizacion.src = "";
+            return;
+        }
+
+
+        var filePath = realFileBtn.value;
+        var allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+
+
+
+        } else {
+            // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+            const primerArchivo = archivos[0];
+            // Lo convertimos a un objeto de tipo objectURL
+            const objectURL = URL.createObjectURL(primerArchivo);
+            // Y a la fuente de la imagen le ponemos el objectURL
+            $imagenPrevisualizacion.src = objectURL;
+        }
+    });
+</script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+
+<script src="~/js/scripts.js"></script>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+  
+}
+
